@@ -1,10 +1,10 @@
-import {BaseEntity, Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import {BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {VideoEntity} from "./video.entity";
+import {Base} from "../utils/base";
+import {SubscriptionEntity} from "./subscription.entity";
 
 @Entity('user')
-export class UserEntity extends BaseEntity {
-    @PrimaryGeneratedColumn()
-    id: number
-     
+export class UserEntity extends Base{
     @Column({unique: true})
     email: string
     
@@ -25,4 +25,14 @@ export class UserEntity extends BaseEntity {
     
     @Column({default: '', name:'avatar_path'})
     avatarPath: string
+    
+    @OneToMany(()=>VideoEntity,video => video.user)
+    videos: VideoEntity[]
+    
+    @OneToMany(()=>SubscriptionEntity, sub =>sub.fromUser)
+    subscriptions: SubscriptionEntity[]
+    
+    
+    @OneToMany(()=>SubscriptionEntity,sub => sub.toChannel)
+    subscribers: SubscriptionEntity[]
 }
