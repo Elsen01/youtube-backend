@@ -2,6 +2,7 @@ import {UserEntity} from "./user.entity";
 import {Column, Entity, JoinColumn, ManyToOne, OneToMany} from "typeorm";
 import {Base} from "../utils/base";
 import {SubscriptionEntity} from "./subscription.entity";
+import {CommentEntity} from "./comment.entity";
 
 @Entity('video')
 export class VideoEntity extends Base{
@@ -35,4 +36,7 @@ export class VideoEntity extends Base{
     
     @OneToMany(()=> SubscriptionEntity,sub => sub.fromUser)
     subscriptions: SubscriptionEntity[]
+    
+    @OneToMany(()=> CommentEntity,comment => comment.video)
+    comments: CommentEntity
 }
