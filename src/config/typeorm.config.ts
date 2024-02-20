@@ -8,6 +8,5 @@ export const getTypeOrmConfig = async (configService: ConfigService):Promise<Typ
     username: 'test',
     password: 'test123',
     database: 'postgres',
-    entities: ['dist/entities/*{.ts,.js}'],
-    synchronize: false,
+    entities: ['dist/entities/*{.ts,.js}']
 })

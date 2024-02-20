@@ -4,7 +4,7 @@ import {Base} from "../utils/base";
 import {SubscriptionEntity} from "./subscription.entity";
 import {CommentEntity} from "./comment.entity";
 
-@Entity('video')
+@Entity('videos')
 export class VideoEntity extends Base{
     @Column()
     name: string
